@@ -1,33 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\v-lianglyu\\source\\repos\\bookstoretest\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj": {}
+    "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\v-lianglyu\\source\\repos\\bookstoretest\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj": {
+    "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\v-lianglyu\\source\\repos\\bookstoretest\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj",
+        "projectUniqueName": "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj",
         "projectName": "OnlineBookStore",
-        "projectPath": "C:\\Users\\v-lianglyu\\source\\repos\\bookstoretest\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj",
-        "packagesPath": "C:\\Users\\v-lianglyu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\v-lianglyu\\source\\repos\\bookstoretest\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\obj\\",
+        "projectPath": "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj",
+        "packagesPath": "/Users/LiangLyu/.nuget/packages/",
+        "outputPath": "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\v-lianglyu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/LiangLyu/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "/usr/local/share/dotnet/sdk/7.0.317/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -35,16 +33,11 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
@@ -66,6 +59,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[6.0.31, 6.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.31, 6.0.31]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -74,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.317/RuntimeIdentifierGraph.json"
         }
       }
     }

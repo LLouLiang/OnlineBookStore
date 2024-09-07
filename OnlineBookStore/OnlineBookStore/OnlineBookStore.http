@@ -1,6 +1,0 @@
-@OnlineBookStore_HostAddress = http://localhost:5100
-
-GET {{OnlineBookStore_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

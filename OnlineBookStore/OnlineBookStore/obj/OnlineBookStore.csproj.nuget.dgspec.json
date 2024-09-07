@@ -1,31 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj": {}
+    "C:\\Users\\leung\\source\\repos\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj": {}
   },
   "projects": {
-    "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj": {
+    "C:\\Users\\leung\\source\\repos\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj",
+        "projectUniqueName": "C:\\Users\\leung\\source\\repos\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj",
         "projectName": "OnlineBookStore",
-        "projectPath": "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore.csproj",
-        "packagesPath": "/Users/LiangLyu/.nuget/packages/",
-        "outputPath": "/Users/LiangLyu/Projects/OnlineBookStore/OnlineBookStore/OnlineBookStore/OnlineBookStore/obj/",
+        "projectPath": "C:\\Users\\leung\\source\\repos\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore.csproj",
+        "packagesPath": "C:\\Users\\leung\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\leung\\source\\repos\\OnlineBookStore\\OnlineBookStore\\OnlineBookStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/LiangLyu/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\leung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.317/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -36,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
@@ -59,20 +60,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.31, 6.0.31]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[6.0.31, 6.0.31]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.31, 6.0.31]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -81,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.317/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

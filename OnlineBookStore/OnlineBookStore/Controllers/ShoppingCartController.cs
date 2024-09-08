@@ -6,28 +6,49 @@ namespace OnlineBookStore.Controllers
     [Route("[controller]")]
     public class ShoppingCartController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IShoppingCartService _shoppingCartService;
 
-        private readonly ILogger<ShoppingCartController> _logger;
-
-        public ShoppingCartController(ILogger<ShoppingCartController> logger)
+        public ShoppingCartController(IShoppingCartService shoppingCartService)
         {
-            _logger = logger;
+            _shoppingCartService = shoppingCartService;
         }
 
-        [HttpGet(Name = "GetShoppingCart")]
-        public IEnumerable<WeatherForecast> Get()
+        /// <summary>
+        /// POST: api/shoppingcart/add/{bookId}/{quantity}
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
+        [HttpPost("add/{bookId}/{quantity}")]
+        public async Task<IActionResult> AddToCart(int bookId, int quantity)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            if (quantity <= 0)
+                return BadRequest("Quantity must be greater than zero.");
+
+            await _shoppingCartService.AddToCartAsync(bookId, quantity);
+            return Ok();
+        }
+
+        /// <summary>
+        /// GET: api/shoppingcart
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetCartItems()
+        {
+            var cartItems = await _shoppingCartService.GetCartItemsAsync();
+            return Ok(cartItems);
+        }
+
+        /// <summary>
+        /// DELETE: api/shoppingcart/clear
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("clear")]
+        public async Task<IActionResult> ClearCart()
+        {
+            await _shoppingCartService.ClearCartAsync();
+            return Ok();
         }
     }
 }

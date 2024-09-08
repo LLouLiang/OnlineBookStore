@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>6e006914-1130-40aa-8ba5-5f1e14f61028</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineBookStore.DTOs\OnlineBookStore.DTOs.csproj" />
+    <ProjectReference Include="..\OnlineBookStore.Interfaces\OnlineBookStore.Interfaces.csproj" />
+    <ProjectReference Include="..\OnlineBookStore.Repositories\OnlineBookStore.Repositories.csproj" />
+    <ProjectReference Include="..\OnlineBookStore.Services\OnlineBookStore.Services.csproj" />
+  </ItemGroup>
+
+</Project>

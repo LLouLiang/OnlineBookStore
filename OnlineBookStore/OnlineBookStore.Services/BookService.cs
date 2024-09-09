@@ -23,13 +23,11 @@ namespace OnlineBookStore.Services
 
                 var Id = await _unitOfWork.IBookRepository.InsertAsync(bookEntity);
 
+                bookDto.Id = Id;
+
                 await _unitOfWork.CompleteAsync();
 
-                var bookDtoResponse = _mapper.Map<BookDTO>(bookEntity);
-
-                bookDtoResponse.Id = Id;
-
-                return new ServiceResponse<BookDTO>(true, "Book added successfully", "0001", "Book added successfully", bookDtoResponse);
+                return new ServiceResponse<BookDTO>(true, "Book added successfully", "0001", "Book added successfully", bookDto);
             }
             catch (Exception ex)
             {

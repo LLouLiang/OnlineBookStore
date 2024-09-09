@@ -17,34 +17,38 @@ SQLite (in-memory or local)
 A development environment like Visual Studio or VS Code
 
 Steps:
-Clone the Repository:
+1. Clone the Repository:
+git clone https://github.com/your-repo/online-book-store.git
+cd online-book-store
 
-'git clone https://github.com/your-repo/online-book-store.git
-cd online-book-store'
-
-Install Dependencies: Install necessary NuGet packages, including:
-
+2. Install Dependencies: Install necessary NuGet packages, including:
 ASP.NET Core Identity
 SQLite
 OpenTelemetry
 
-Database Setup: The project is pre-configured to use an SQLite in-memory database. You can modify the appsettings.json file to use a persistent SQLite database or another provider if needed.
+3. Database Setup: The project is pre-configured to use an SQLite in-memory database. You can modify the appsettings.json file to use a persistent SQLite database or another provider if needed.
 
-Run the Application: 'dotnet run' application will run at https://localhost:5001.
+4. Run the Application:
+'dotnet run'
+application will run at https://localhost:5001.
 
 # Usage: 
 Example Endpoints:
-Books Management:
-
+1. Books Management:
 Add a book: POST /books
 Get all books: GET /books
 
-Shopping Cart:
+2. Shopping Cart:
 Add a book to cart: POST /shoppingcart/add/{shoppingCartId}/{bookId}/{quantity}
 Get cart details: GET /shoppingcart/{shoppingCartId}
 
-Checkout:
+3. Checkout:
 Calculate total: GET /checkout/{shoppingCartId}/total
+
+4. Auth:
+Register: POST /Auth/register sample payload '{"username": "test", "firstName": "test","lastName": "test","email": "test@sample.com","password": "Pas@w0rd1"}'
+Login: POST /Auth/login admin already seeded payload '{"username": "admin", "password": "Admin@123"}'
+6. Trace
 
 Authentication:
 Users can register and login using the /auth/register and /auth/login endpoints. Once logged in, use the JWT token for subsequent authorized requests by including it in the request headers:

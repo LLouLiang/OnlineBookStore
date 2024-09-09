@@ -1,8 +1,10 @@
-﻿namespace OnlineBookStore.Models
+﻿using OnlineBookStore.DTOs;
+
+namespace OnlineBookStore.Models
 {
-    public class BookDTO
+    public class BookDTO : BaseDTO
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Price { get; set; }

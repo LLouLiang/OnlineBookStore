@@ -1,6 +1,9 @@
-﻿namespace OnlineBookStore.Interfaces.Repository
+﻿using OnlineBookStore.Models;
+
+namespace OnlineBookStore.Interfaces.Repository
 {
-    public interface IShoppingCartRepository
+    public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {
+
     }
 }

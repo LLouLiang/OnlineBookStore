@@ -1,30 +1,21 @@
 ﻿using OnlineBookStore.Interfaces.Repository;
-using OnlineBookStore.Models;
 using OnlineBookStore.Repositories.Data;
-using OnlineBookStore.Services.DB;
 
 namespace OnlineBookStore.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly OnlineBookStoreDbContext _context;
-        private readonly Dictionary<Type, object> _repositories = new();
+        public IBookRepository IBookRepository { get; private set; }
+        public IShoppingCartRepository IShoppingCartRepository { get; private set; }
+        public ICartItemRepository ICartItemRepository { get; private set; }
 
-        public UnitOfWork(OnlineBookStoreDbContext context)
+        public UnitOfWork(OnlineBookStoreDbContext context, IBookRepository bookRepository, IShoppingCartRepository shoppingCartRepository, ICartItemRepository cartItemRepository)
         {
+            IBookRepository = bookRepository;
+            IShoppingCartRepository = shoppingCartRepository;
+            ICartItemRepository = cartItemRepository;
             _context = context;
-        }
-
-        public IRepository<T> Repository<T>() where T : class
-        {
-            if (_repositories.ContainsKey(typeof(T)))
-            {
-                return (IRepository<T>)_repositories[typeof(T)];
-            }
-
-            var repository = new BaseRepository<T>(_context);
-            _repositories.Add(typeof(T), repository);
-            return repository;
         }
 
         public async Task<int> CompleteAsync()

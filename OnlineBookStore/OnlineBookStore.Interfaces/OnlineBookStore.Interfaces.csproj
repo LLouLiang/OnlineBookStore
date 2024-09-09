@@ -12,9 +12,4 @@
     <ProjectReference Include="..\OnlineBookStore.Models\OnlineBookStore.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="HttpClient\" />
-    <Folder Include="HttpClientService\" />
-  </ItemGroup>
-
 </Project>

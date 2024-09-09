@@ -5,8 +5,7 @@ namespace OnlineBookStore.Models
     public class ShoppingCart : BaseEntity
     {
         [Key]
-        public int Id { get; set; }
-        public int BookId { get; set; }
-        public int Quantity { get; set; }
+        public long Id { get; set; }
+        public string Owner { get; set; }
     }
 }

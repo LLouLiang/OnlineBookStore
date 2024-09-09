@@ -2,6 +2,10 @@
 {
     public interface ISqlQueryContext
     {
-        string GetBooksByCategory(string categoryName);
+        string GetBooksByIds();
+
+        string GetCartItemsByShoppingCartId();
+
+        string GetCartItemsByBookIdAndShoppingCartId();
     }
 }

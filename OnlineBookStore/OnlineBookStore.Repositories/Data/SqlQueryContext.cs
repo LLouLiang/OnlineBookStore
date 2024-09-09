@@ -4,9 +4,18 @@ namespace OnlineBookStore.Repositories.Data
 {
     public class SqlQueryContext : ISqlQueryContext
     {
-        public string GetBooksByCategory(string categoryName)
+        public string GetBooksByIds()
         {
-            return @"SELECT b.BookId, b.ISBN, b.Name, b.Author, b.Price, b.Category FROM Book b WHERE b.Category = @categoryName";
+            return @"SELECT b.BookId, b.Price, b.CreatedByADName, b.CreateDate, b.ModifyByADName, b.ModifyDate, b.Enabled FROM Book b WHERE b.Id IN @Ids";
+        }
+        public string GetCartItemsByShoppingCartId()
+        {
+            return @"SELECT ci.Id, ci.ShoppingCartId, ci.BookId, ci.Quantity, ci.CreatedByADName, ci.CreateDate, ci.ModifyByADName, ci.ModifyDate, ci.Enabled FROM CartItems ci WHERE ci.ShoppingCartId = @ShoppingCartId";
+        }
+
+        public string GetCartItemsByBookIdAndShoppingCartId()
+        {
+            return @"SELECT ci.Id, ci.ShoppingCartId, ci.BookId, ci.Quantity, ci.CreatedByADName, ci.CreateDate, ci.ModifyByADName, ci.ModifyDate, ci.Enabled FROM CartItems ci WHERE ci.BookId = @BookId AND ci.ShoppingCartId = @ShoppingCartId";
         }
     }
 }

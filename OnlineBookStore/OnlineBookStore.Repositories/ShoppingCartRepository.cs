@@ -7,9 +7,14 @@ namespace OnlineBookStore.Repositories
 {
     public class ShoppingCartRepository: BaseRepository<ShoppingCart>, IShoppingCartRepository
     {
-        public ShoppingCartRepository(OnlineBookStoreDbContext context) : base(context)
+        private readonly OnlineBookStoreDbContext _context;
+        private readonly ISqlQueryContext _sqlQueryContext;
+        public ShoppingCartRepository(OnlineBookStoreDbContext context, ISqlQueryContext sqlQueryContext) : base(context)
         {
+            _context = context;
+            _sqlQueryContext = sqlQueryContext;
         }
+
     }
-    
+
 }

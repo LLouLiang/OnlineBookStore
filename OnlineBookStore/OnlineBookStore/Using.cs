@@ -13,3 +13,5 @@ global using Microsoft.OpenApi.Models;
 global using OpenTelemetry.Resources;
 global using OpenTelemetry.Trace;
 global using System.Text;
+global using OnlineBookStore.WebApi.Telemetry;
+global using OpenTelemetry;

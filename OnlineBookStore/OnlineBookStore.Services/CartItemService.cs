@@ -113,7 +113,7 @@ namespace OnlineBookStore.Services
             try
             {
                 var cartItemResponse = await GetCartItemByBookIdAndShoppingCartId(cartItemDto.BookId, cartItemDto.ShoppingCartId).ConfigureAwait(false);
-                if(cartItemResponse == null)
+                if(cartItemResponse.ResponseObject == null)
                 {
                     return await InsertCartItem(cartItemDto);
                 }

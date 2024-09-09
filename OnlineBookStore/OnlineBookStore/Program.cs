@@ -1,6 +1,3 @@
-using OnlineBookStore.WebApi.Telemetry;
-using OpenTelemetry;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen(options =>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineBookStore.Controllers
@@ -13,42 +14,16 @@ namespace OnlineBookStore.Controllers
             _shoppingCartService = shoppingCartService;
         }
 
-        /// <summary>
-        /// POST: api/shoppingcart/add/{bookId}/{quantity}
-        /// </summary>
-        /// <param name="bookId"></param>
-        /// <param name="quantity"></param>
-        /// <returns></returns>
-        [HttpPost("add/{bookId}/{quantity}")]
-        public async Task<IActionResult> AddToCart(int bookId, int quantity)
-        {
-            if (quantity <= 0)
-                return BadRequest("Quantity must be greater than zero.");
-
-            await _shoppingCartService.AddToCartAsync(bookId, quantity);
-            return Ok();
-        }
+        [HttpPost("add/{shoppingCartId}/{bookId}/{quantity}")]
+        public async Task<IServiceResponse<ShoppingCartDTO>> AddBookToShoppingCart([FromRoute] long shoppingCartId, [FromRoute] long bookId, [FromRoute] int quantity)
+            => await _shoppingCartService.AddBookToShoppingCart(shoppingCartId, bookId, quantity);
 
         /// <summary>
         /// GET: api/shoppingcart
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> GetCartItems()
-        {
-            var cartItems = await _shoppingCartService.GetCartItemsAsync();
-            return Ok(cartItems);
-        }
-
-        /// <summary>
-        /// DELETE: api/shoppingcart/clear
-        /// </summary>
-        /// <returns></returns>
-        [HttpDelete("clear")]
-        public async Task<IActionResult> ClearCart()
-        {
-            await _shoppingCartService.ClearCartAsync();
-            return Ok();
-        }
+        [HttpGet("{id}")]
+        public async Task<IServiceResponse<ShoppingCartDTO>> GetCartItems([FromRoute] long id)
+            => await _shoppingCartService.GetShoppingCartById(id);
     }
 }

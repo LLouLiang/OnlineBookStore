@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using OnlineBookStore.Interfaces.Repository;
 using OnlineBookStore.Models;
 using OnlineBookStore.Repositories.Data;
@@ -8,13 +9,19 @@ namespace OnlineBookStore.Repositories
 {
     public class BookRepository : BaseRepository<Book>, IBookRepository
     {
-        public BookRepository(OnlineBookStoreDbContext context) : base(context)
+        private readonly OnlineBookStoreDbContext _context;
+        private readonly ISqlQueryContext _sqlQueryContext;
+        public BookRepository(OnlineBookStoreDbContext context, ISqlQueryContext sqlQueryContext) : base(context)
         {
+            _context = context;
+            _sqlQueryContext = sqlQueryContext;
         }
 
-        public async Task<IEnumerable<Book>> GetBooksByCategoryAsync(string category)
+        public async Task<IEnumerable<Book>> GetBooksByIds(List<long> ids)
         {
-            return await _dbSet.Where(book => book.Category == category).ToListAsync();
+            var query = _sqlQueryContext.GetBooksByIds();
+            var param = new SqliteParameter("@Ids", ids);
+            return await _context.Books.FromSqlRaw(query, param).ToListAsync();
         }
     }
 }

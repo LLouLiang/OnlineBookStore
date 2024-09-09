@@ -15,22 +15,21 @@ namespace OnlineBookStore.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IServiceResponse<BookDTO>> AddBookAsync(BookDTO bookDto)
+        public async Task<IServiceResponse<BookDTO>> InsertBook(BookDTO bookDto)
         {
             try
             {
-                using (_unitOfWork)
-                {
-                    var bookEntity = _mapper.Map<Book>(bookDto);
+                var bookEntity = _mapper.Map<Book>(bookDto);
 
-                    await _unitOfWork.Repository<Book>().InsertAsync(bookEntity);
+                var Id = await _unitOfWork.IBookRepository.InsertAsync(bookEntity);
 
-                    await _unitOfWork.CompleteAsync();
+                await _unitOfWork.CompleteAsync();
 
-                    var bookDtoResponse = _mapper.Map<BookDTO>(bookEntity);
+                var bookDtoResponse = _mapper.Map<BookDTO>(bookEntity);
 
-                    return new ServiceResponse<BookDTO>(true, "Book added successfully", "0001", "Book added successfully", bookDtoResponse);
-                }
+                bookDtoResponse.Id = Id;
+
+                return new ServiceResponse<BookDTO>(true, "Book added successfully", "0001", "Book added successfully", bookDtoResponse);
             }
             catch (Exception ex)
             {
@@ -38,18 +37,17 @@ namespace OnlineBookStore.Services
             }
         }
 
-        public async Task<IServiceResponse<IEnumerable<BookDTO>>> GetAllBooksAsync()
+        public async Task<IServiceResponse<IEnumerable<BookDTO>>> GetAllBooks()
         {
             try
             {
-                using (_unitOfWork)
-                {
-                    var books = await _unitOfWork.Repository<Book>().GetAllAsync();
+                var books = await _unitOfWork.IBookRepository.GetAllAsync();
 
-                    var bookDtos = _mapper.Map<IEnumerable<BookDTO>>(books);
+                await _unitOfWork.CompleteAsync();
 
-                    return new ServiceResponse<IEnumerable<BookDTO>>(true, "Books retrieved successfully", "0001", "Books retrieved successfully", bookDtos);
-                }
+                var bookDtos = _mapper.Map<IEnumerable<BookDTO>>(books);
+
+                return new ServiceResponse<IEnumerable<BookDTO>>(true, "Books retrieved successfully", "0001", "Books retrieved successfully", bookDtos);
             }
             catch (Exception ex)
             {
@@ -57,22 +55,40 @@ namespace OnlineBookStore.Services
             }
         }
 
-        public async Task<IServiceResponse<BookDTO>> GetBookByIdAsync(int id)
+        public async Task<IServiceResponse<BookDTO>> GetBookById(long id)
+        {
+            try
+            {
+                var bookDB = await _unitOfWork.IBookRepository.GetByIdAsync(id);
+
+                await _unitOfWork.CompleteAsync();
+
+                var bookDto = _mapper.Map<BookDTO>(bookDB);
+
+                return new ServiceResponse<BookDTO>(true, "Fetch book by Id successfully", "0001", "Fetch book by Id successfully", bookDto);
+            }
+            catch(Exception ex)
+            {
+                return new ServiceResponse<BookDTO>(false, ex.Message, "0002", ex.Message, null);
+            }
+        }
+
+        public async Task<IServiceResponse<IEnumerable<BookDTO>>> GetBooksByIds(List<long> ids)
         {
             try
             {
                 using (_unitOfWork)
                 {
-                    var bookDB = await _unitOfWork.Repository<Book>().GetByIdAsync(id);
+                    var books = await _unitOfWork.IBookRepository.GetBooksByIds(ids);
 
-                    var bookDto = _mapper.Map<BookDTO>(bookDB);
+                    var bookDtos = _mapper.Map<IEnumerable<BookDTO>>(books);
 
-                    return new ServiceResponse<BookDTO>(true, "Fetch book by Id successfully", "0001", "Fetch book by Id successfully", bookDto);
+                    return new ServiceResponse<IEnumerable<BookDTO>>(true, "Fetch books by Ids successfully", "0001", "Fetch books by Ids successfully", bookDtos);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return new ServiceResponse<BookDTO>(false, ex.Message, "0002", ex.Message, null);
+                return new ServiceResponse<IEnumerable<BookDTO>> (false, ex.Message, "0002", ex.Message, null);
             }
         }
     }

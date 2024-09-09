@@ -1,10 +1,10 @@
-﻿using OnlineBookStore.Models;
-
-namespace OnlineBookStore.Interfaces.Repository
+﻿namespace OnlineBookStore.Interfaces.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<T> Repository<T>() where T : class;
+        IBookRepository IBookRepository { get; }
+        IShoppingCartRepository IShoppingCartRepository { get; }
+        ICartItemRepository ICartItemRepository { get; }
         Task<int> CompleteAsync();
     }
 }

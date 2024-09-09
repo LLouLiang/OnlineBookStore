@@ -9,6 +9,7 @@ namespace OnlineBookStore.Services
         {
             CreateMap<Book, BookDTO>().ReverseMap();
             CreateMap<ShoppingCart, ShoppingCartDTO>().ReverseMap();
+            CreateMap<CartItem, CartItemDTO>().ReverseMap();
         }
     }
 }

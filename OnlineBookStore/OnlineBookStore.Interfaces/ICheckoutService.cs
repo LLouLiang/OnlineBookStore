@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OnlineBookStore.Interfaces
+﻿namespace OnlineBookStore.Interfaces
 {
     public interface ICheckoutService
     {
-        Task<decimal> CalculateTotalAsync();
+        Task<IServiceResponse<string>> CalculateTotalAsync(long shoppingCartId);
     }
 }

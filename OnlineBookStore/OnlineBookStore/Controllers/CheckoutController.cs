@@ -13,11 +13,8 @@ namespace OnlineBookStore.Controllers
             _checkoutService = checkoutService;
         }
 
-        [HttpGet("total")]
-        public async Task<IActionResult> CalculateTotal()
-        {
-            var totalPrice = await _checkoutService.CalculateTotalAsync();
-            return Ok(totalPrice);
-        }
+        [HttpGet("{shoppingCartId}/total")]
+        public async Task<IServiceResponse<string>> CalculateTotal(long shoppingCartId)
+            => await _checkoutService.CalculateTotalAsync(shoppingCartId);
     }
 }

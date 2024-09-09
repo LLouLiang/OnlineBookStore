@@ -1,16 +1,15 @@
 ﻿using OnlineBookStore.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineBookStore.Interfaces
 {
     public interface IShoppingCartService
     {
-        Task AddToCartAsync(int bookId, int quantity);
-        Task<IEnumerable<ShoppingCart>> GetCartItemsAsync();
-        Task ClearCartAsync();
+        Task<IServiceResponse<ShoppingCartDTO>> AddBookToShoppingCart(long shoppingCartId, long bookId, int quantity);
+
+        Task<IServiceResponse<ShoppingCartDTO>> InsertShoppingCart(ShoppingCartDTO shoppingCartDto);
+
+        Task<IServiceResponse<ShoppingCartDTO>> UpdateShoppingCart(ShoppingCartDTO shoppingCartDto);
+
+        Task<IServiceResponse<ShoppingCartDTO>> GetShoppingCartById(long id);
     }
 }

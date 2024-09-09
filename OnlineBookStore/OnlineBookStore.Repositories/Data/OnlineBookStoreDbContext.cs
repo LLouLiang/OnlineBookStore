@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OnlineBookStore.Models;
 
 namespace OnlineBookStore.Repositories.Data
 {
-    public class OnlineBookStoreDbContext : DbContext
+    public class OnlineBookStoreDbContext : IdentityDbContext<ApplicationUser>
     {
         public OnlineBookStoreDbContext(DbContextOptions<OnlineBookStoreDbContext> option) : base(option)
         {
@@ -11,6 +13,24 @@ namespace OnlineBookStore.Repositories.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Trace> Traces { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // configured the identity entities
+
+            // Example for IdentityUserLogin:
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
+
+            // Example for IdentityUserRole:
+            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(r => new { r.UserId, r.RoleId });
+
+            // Example for IdentityUserToken:
+            modelBuilder.Entity<IdentityUserToken<string>>().HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+        }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -42,7 +62,8 @@ namespace OnlineBookStore.Repositories.Data
 
         private string GetCurrentADUserName()
         {
-            return "user_ad_name";
+            // TO-DO user adname or equvilant from token
+            return "modified_user_adname";
         }
     }
 }

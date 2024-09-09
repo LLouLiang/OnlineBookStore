@@ -17,19 +17,24 @@ namespace OnlineBookStore.Services.DB
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await _dbSet.ToListAsync();
-        }
+            => await _dbSet.AsNoTracking().ToListAsync();
 
-        public async Task<T> GetByIdAsync(int id)
-        {
-            return await _dbSet.FindAsync(id);
-        }
+        public async Task<T> GetByIdAsync(long id)
+            => await _dbSet.AsNoTracking().FirstOrDefaultAsync(e => EF.Property<long>(e, "Id") == id);
 
-        public async Task<T> InsertAsync(T entity)
+        public async Task<long> InsertAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
-            return entity;
+            await SaveChangesAsync();
+            var idProperty = typeof(T).GetProperty("Id");
+
+            if (idProperty == null)
+            {
+                throw new InvalidOperationException("Entity does not have an Id property");
+            }
+
+            // Return the Id value of the inserted entity
+            return (long)idProperty.GetValue(entity);
         }
 
         public async Task<int> SaveChangesAsync()
@@ -37,7 +42,7 @@ namespace OnlineBookStore.Services.DB
             return await _context.SaveChangesAsync();
         }
 
-        public void Update(T entity)
+        public void UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
         }

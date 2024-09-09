@@ -1,9 +1,13 @@
-﻿namespace OnlineBookStore.Models
+﻿using OnlineBookStore.DTOs;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OnlineBookStore.Models
 {
-    public class ShoppingCartDTO
+    public class ShoppingCartDTO : BaseDTO
     {
-        public int Id { get; set; }
-        public int BookId { get; set; }
-        public int Quantity { get; set; }
+        public long Id { get; set; }
+        public string Owner { get; set; }
+        [NotMapped]
+        public IEnumerable<CartItemDTO> CartItems { get; set; } 
     }
 }

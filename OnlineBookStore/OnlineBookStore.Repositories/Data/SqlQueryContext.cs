@@ -6,7 +6,7 @@ namespace OnlineBookStore.Repositories.Data
     {
         public string GetBooksByIds()
         {
-            return @"SELECT b.BookId, b.Price, b.CreatedByADName, b.CreateDate, b.ModifyByADName, b.ModifyDate, b.Enabled FROM Book b WHERE b.Id IN @Ids";
+            return $"SELECT b.Id, b.Title, b.Author, b.Price, b.Category, b.CreatedByADName, b.CreateDate, b.ModifyByADName, b.ModifyDate, b.Enabled FROM Books b WHERE b.Id IN (@Ids)";
         }
         public string GetCartItemsByShoppingCartId()
         {

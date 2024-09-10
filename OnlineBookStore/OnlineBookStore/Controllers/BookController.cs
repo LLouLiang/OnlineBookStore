@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static OnlineBookStore.DTOs.Constants.Authorization;
 
 namespace OnlineBookStore.Controllers
 {
@@ -14,19 +13,34 @@ namespace OnlineBookStore.Controllers
         {
             _bookService = bookService;
         }
+
+        /// <summary>
+        /// Post: api/addbook
+        /// </summary>
+        /// <param name="bookDto"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Administrator")]
         [HttpPost]
-        public async Task<IServiceResponse<BookDTO>> AddBook(BookDTO bookDto)
+        public async Task<IServiceResponse<BookDTO>> AddBook([FromBody] BookDTO bookDto)
             => await _bookService.InsertBook(bookDto).ConfigureAwait(false);
 
+        /// <summary>
+        /// Get: api/getallbooks
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         public async Task<IServiceResponse<IEnumerable<BookDTO>>> GetAllBooks()
             => await _bookService.GetAllBooks().ConfigureAwait(false);
 
+        /// <summary>
+        /// Get: api/getbookbyid
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<IServiceResponse<BookDTO>> GetBookById(long id)
+        public async Task<IServiceResponse<BookDTO>> GetBookById([FromRoute] long id)
             => await _bookService.GetBookById(id).ConfigureAwait(false);
     }
 }

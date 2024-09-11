@@ -20,7 +20,13 @@ namespace OnlineBookStore.Repositories
         public async Task<IEnumerable<Book>> GetBooksByIds(List<long> ids)
         {
             var query = _sqlQueryContext.GetBooksByIds();
-            var param = new SqliteParameter("@Ids", ids);
+
+            var param = ids.Select((id, index) => new SqliteParameter($"@id{index}", id)).ToArray();
+
+            var inClause = string.Join(", ", param.Select(p => p.ParameterName));
+
+            query = query.Replace("@Ids", inClause);
+
             return await _context.Books.FromSqlRaw(query, param).ToListAsync();
         }
     }
